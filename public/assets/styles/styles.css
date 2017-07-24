@@ -1,8 +1,31 @@
+body {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+}
+
 h1 {
   color: #2a2a2a;
 }
 
 .editor {
   width: 800px;
-  border: 1px solid #dddddd;
+  height: 400px;
+  color: #2a2a2a;
+  cursor: text;
 }
+
+
+[contenteditable=true]:empty::before {
+  content: attr(placeholder);
+  color:#c4c4c4;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+
+/* [contentEditable=true]:empty:not(:focus):before{
+  content:attr(data-ph);
+  color:grey;
+  font-style:italic;
+} */
