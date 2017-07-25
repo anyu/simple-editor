@@ -22,7 +22,7 @@ class Editor extends React.Component {
       // this.setState = {
       //   task: 'hey'
       // }
-    }
+    } 
   }
 
   render() {
@@ -31,7 +31,7 @@ class Editor extends React.Component {
         <div className="editorHeaderArea">
           <h1>My Tasks</h1>
         </div>
-        <div className="editor" contentEditable="true" placeholder="Drag files or start writing..." onKeyDown={this.handleKeyPress} >
+        <div className="editor" contentEditable="true" placeholder="Start writing..." onKeyDown={this.handleKeyPress} >
 
         </div>
       </div>
