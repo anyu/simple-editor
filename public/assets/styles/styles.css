@@ -1,18 +1,64 @@
 body {
   font-family: 'Lato', Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
 h1 {
+  font-weight: 300;
+  font-size: 36px;
   color: #2a2a2a;
+  margin: 0;
+}
+
+h3 {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 30px;
+  background: #ffffff;
+
+}
+#root {
+  background: #fafafa;
+}
+
+nav {
+  position: absolute;
+  top: 20px;
+  right: 40px;
 }
 
 .editor {
-  width: 800px;
-  height: 400px;
+  max-width: 600px;
+  height: 700px;
   color: #2a2a2a;
+  background: #ffffff;
   cursor: text;
+  border: 1px solid #dddddd;
+  margin: 30px auto 60px auto;
+  padding: 40px;
+  box-shadow: 3px 3px 5px #f1f1f1;
 }
 
+.editorContainer {
+  padding: 30px;
+}
+
+.editorHeaderArea {
+  margin: auto;
+  text-align: center;
+}
+
+.userpic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
 
 [contenteditable=true]:empty::before {
   content: attr(placeholder);
@@ -22,10 +68,3 @@ h1 {
 [contenteditable]:focus {
     outline: 0px solid transparent;
 }
-
-
-/* [contentEditable=true]:empty:not(:focus):before{
-  content:attr(data-ph);
-  color:grey;
-  font-style:italic;
-} */

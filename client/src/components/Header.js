@@ -1,7 +1,4 @@
 import React from 'react';
-import Header from './Header';
-
-import Editor from './Editor';
 
 
 class App extends React.Component {
@@ -11,9 +8,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="mainContainer">
-        <Header />
-        <Editor />
+      <div className="header">
+        <h3>HumanDx</h3>
+        <nav>
+          <img className ='userpic' src='assets/images/avatar.jpg'/>
+        </nav>
       </div>
   )}
 }
