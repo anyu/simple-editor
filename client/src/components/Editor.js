@@ -4,13 +4,24 @@ import React from 'react';
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.state = {
+      task: ''
+
+    }
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleKeyDown(event) {
-    if(event.key === '9'){
-       event.preventDefault();
-      console.log('enter press here! ')
+  handleKeyPress(event) {
+    if(event.key === 'Enter'){
+      this.setState = {
+        task: 'hey'
+      }
+    } else if(event.keyCode == '9'){
+      event.preventDefault();
+      document.execCommand('insertHTML', false, '&#009');
+      // this.setState = {
+      //   task: 'hey'
+      // }
     }
   }
 
@@ -20,7 +31,7 @@ class Editor extends React.Component {
         <div className="editorHeaderArea">
           <h1>My Tasks</h1>
         </div>
-        <div className="editor" contentEditable="true" placeholder="Drag files or start writing..." onKeyDown={this.handleKeyDown} >
+        <div className="editor" contentEditable="true" placeholder="Drag files or start writing..." onKeyDown={this.handleKeyPress} >
 
         </div>
       </div>

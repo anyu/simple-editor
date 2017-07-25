@@ -32,15 +32,17 @@ nav {
 }
 
 .editor {
-  max-width: 600px;
+  max-width: 640px;
   height: 700px;
   color: #2a2a2a;
   background: #ffffff;
   cursor: text;
+  line-height: 22px;
   border: 1px solid #dddddd;
   margin: 30px auto 60px auto;
   padding: 40px;
   box-shadow: 3px 3px 5px #f1f1f1;
+  white-space: pre-wrap;
 }
 
 .editorContainer {
