@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 
-import Editor from './Editor';
+import MyEditor from './MyEditor';
 
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className="mainContainer">
         <Header />
-        <Editor />
+        <MyEditor />
       </div>
   )}
 }
