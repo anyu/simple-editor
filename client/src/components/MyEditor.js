@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, KeyBindingUtil } from 'draft-js';
 const {hasCommandModifier} = KeyBindingUtil;
@@ -46,7 +47,7 @@ class MyEditor extends React.Component {
   }
 
   onTab(e) {
-    const maxDepth = 4;
+    const maxDepth = 3;
     this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
   }
   
