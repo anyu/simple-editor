@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, KeyBindingUtil } from 'draft-js';
 const {hasCommandModifier} = KeyBindingUtil;
@@ -10,7 +9,9 @@ class MyEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty()
     };
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => this.setState({
+      editorState
+    });
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.keyBindingFn = this.keyBindingFn.bind(this);
     this.onTab = this.onTab.bind(this);
@@ -36,8 +37,7 @@ class MyEditor extends React.Component {
       };
       this.onToggle(e);
       return 'bullet';
-    } else if (e.keyCode === 70 && hasCommandModifier(e)) {
-
+    } else if (e.keyCode == '9') {
       console.log('indent')
       e.preventDefault();
       document.execCommand('insertHTML', false, '&#009');
@@ -63,8 +63,6 @@ class MyEditor extends React.Component {
   render() {
     const {editorState} = this.state;
 
-    let className = 'RichEditor-editor editor"';
-
     return (
       <div className="editorContainer">
         <div className="editorHeaderArea">
@@ -76,7 +74,7 @@ class MyEditor extends React.Component {
               editorState={editorState}
               onToggle={this.toggleBlockType}
             />
-            <div className={className} onClick={this.focus}>
+            <div className="RichEditor-editor editor" onClick={this.focus}>
               <Editor
                 editorState={editorState}
                 handleKeyCommand={this.handleKeyCommand}
