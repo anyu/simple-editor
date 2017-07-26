@@ -20,6 +20,8 @@ class MyEditor extends React.Component {
     console.log('command', command)
     if (command === 'bullet') {
       return 'handled';
+    } else if (command === 'indent') {
+      return 'handled';
     }
     return 'not-handled';
   }
@@ -33,6 +35,12 @@ class MyEditor extends React.Component {
       };
       this.onToggle(e);
       return 'bullet';
+    } else if (e.keyCode === 70 && hasCommandModifier(e)) {
+
+      console.log('indent')
+      e.preventDefault();
+      document.execCommand('insertHTML', false, '&#009');
+      return 'indent';
     }
     return getDefaultKeyBinding(e);
   }
