@@ -14,9 +14,9 @@ class MyEditor extends React.Component {
         <div className="editorHeaderArea">
           <h1>My Tasks</h1>
         </div>
-          {/* <div className="editor"> */}
+           <div className="editorWrapper"> 
             <TestEditor/>
-         {/* </div>  */}
+          </div>  
       </div>
   )}
 }

@@ -1,5 +1,7 @@
 import React from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, getDefaultKeyBinding, KeyBindingUtil } from 'draft-js';
+const {hasCommandModifier} = KeyBindingUtil;
+
 
 class TestEditor extends React.Component {
   constructor(props) {
@@ -8,22 +10,34 @@ class TestEditor extends React.Component {
       editorState: EditorState.createEmpty()
     };
     this.onChange = (editorState) => this.setState({editorState});
-    this.handleKeyCommand = (command) => this._handleKeyCommand(command);
-    this.onTab = (e) => this._onTab(e);
-    this.toggleBlockType = (type) => this._toggleBlockType(type);
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.keyBindingFn = this.keyBindingFn.bind(this);
+    this.onTab = this.onTab.bind(this);
+    this.toggleBlockType = this._toggleBlockType.bind(this);
   }
 
-  _handleKeyCommand(command) {
-    const {editorState} = this.state;
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return true;
+  handleKeyCommand(command: string): DraftHandleValue {
+    console.log('command', command)
+    if (command === 'bullet') {
+      return 'handled';
     }
-    return false;
+    return 'not-handled';
   }
 
-  _onTab(e) {
+  keyBindingFn(e: SyntheticKeyboardEvent): string {
+    if (e.keyCode === 76 && hasCommandModifier(e)) {
+      console.log('e.key', e.keyCode)
+      this.onToggle = (e) => {
+        e.preventDefault();
+        this.toggleBlockType('unordered-list-item');
+      };
+      this.onToggle(e);
+      return 'bullet';
+    }
+    return getDefaultKeyBinding(e);
+  }
+
+  onTab(e) {
     const maxDepth = 4;
     this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
   }
@@ -40,7 +54,7 @@ class TestEditor extends React.Component {
   render() {
     const {editorState} = this.state;
 
-    let className = 'RichEditor-editor editor';
+    let className = 'RichEditor-editor editor"';
 
     return (
       <div className="RichEditor-root">
@@ -52,8 +66,9 @@ class TestEditor extends React.Component {
           <Editor
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
+            keyBindingFn={this.keyBindingFn}
             onChange={this.onChange}
-            onTab={this.onTab}
+            onTab={(e) => {this.onTab(e)}}
             placeholder="Start writing..."
           />
         </div>
@@ -62,22 +77,6 @@ class TestEditor extends React.Component {
   }
 }
 
-class StyleButton extends React.Component {
-  constructor() {
-    super();
-    this.onToggle = (e) => {
-      e.preventDefault();
-      this.props.onToggle(this.props.style);
-    };
-  }
-  render() {
-    return (
-      <span className='RichEditor-activeButton' onMouseDown={this.onToggle}>
-        {this.props.label}
-      </span>
-    );
-  }
-}
 
 const BlockStyleControls = (props) => {
   const {editorState} = props;
@@ -87,14 +86,7 @@ const BlockStyleControls = (props) => {
     .getBlockForKey(selection.getStartKey())
     .getType();
   return (
-    <div className="RichEditor-controls">
-      <StyleButton
-        key={'UL'}
-        active={blockType}
-        label='UL'
-        onToggle={props.onToggle}
-        style='unordered-list-item'
-      />
+    <div>
     </div>
   );
 };
