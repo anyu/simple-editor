@@ -1,4 +1,4 @@
-# Project Name
+# Task List Editor
 A minimal task list editor that allows users to type freely and nest task items.
 
 
