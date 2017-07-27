@@ -16,4 +16,4 @@ Since the goal is to reduce friction and allow users to contribute freely, the i
 
 
 ## Development Choices
-The main editor is a customized, minimal implementation of Facebook's Draft.js (http://draftjs.org framework. Draft.js leverages HTML's contentEditable attribute, which enables rich text formatting, and can be customized extensively with React.
+The main editor is a customized, minimal implementation of Facebook's Draft.js (http://draftjs.org) framework. Draft.js leverages HTML's contentEditable attribute, which enables rich text formatting, and can be customized extensively with React.
