@@ -12,14 +12,13 @@ class MyEditor extends React.Component {
     this.onChange = (editorState) => this.setState({
       editorState
     });
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this.keyBindingFn = this.keyBindingFn.bind(this);
-    this.onTab = this.onTab.bind(this);
-    this.toggleBlockType = this._toggleBlockType.bind(this);
+    this._handleKeyCommand = this._handleKeyCommand.bind(this);
+    this._keyBindingFn = this._keyBindingFn.bind(this);
+    this._onTab = this._onTab.bind(this);
+    this._toggleBlockType = this._toggleBlockType.bind(this);
   }
 
-  handleKeyCommand(command: string): DraftHandleValue {
-    console.log('command', command)
+  _handleKeyCommand(command) {
     if (command === 'bullet') {
       return 'handled';
     } else if (command === 'indent') {
@@ -28,25 +27,20 @@ class MyEditor extends React.Component {
     return 'not-handled';
   }
 
-  keyBindingFn(e: SyntheticKeyboardEvent): string {
-    // Cmd+L key
+  _keyBindingFn(e){
+    // Cmd+L key formats text to bullets
     if (e.keyCode === 76 && hasCommandModifier(e)) {
       this.onToggle = (e) => {
         e.preventDefault();
-        this.toggleBlockType('unordered-list-item');
+        this._toggleBlockType('unordered-list-item');
       };
       this.onToggle(e);
       return 'bullet';
-    } else if (e.keyCode == '9') {
-      console.log('indent')
-      e.preventDefault();
-      document.execCommand('insertHTML', false, '&#009');
-      return 'indent';
-    }
+    } 
     return getDefaultKeyBinding(e);
   }
 
-  onTab(e) {
+  _onTab(e) {
     const maxDepth = 3;
     this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
   }
@@ -69,21 +63,15 @@ class MyEditor extends React.Component {
           <h1>My Tasks</h1>
         </div>
         <div className="editorWrapper"> 
-          <div className="RichEditor-root">
-            <BlockStyleControls
+          <div className="RichEditor-editor editor" onClick={this.focus}>
+            <Editor
               editorState={editorState}
-              onToggle={this.toggleBlockType}
+              handleKeyCommand={this._handleKeyCommand}
+              keyBindingFn={this._keyBindingFn}
+              onChange={this.onChange}
+              onTab={(e) => {this._onTab(e)}}
+              placeholder="Start writing..."
             />
-            <div className="RichEditor-editor editor" onClick={this.focus}>
-              <Editor
-                editorState={editorState}
-                handleKeyCommand={this.handleKeyCommand}
-                keyBindingFn={this.keyBindingFn}
-                onChange={this.onChange}
-                onTab={(e) => {this.onTab(e)}}
-                placeholder="Start writing..."
-              />
-            </div>
           </div>
         </div>  
       </div>
@@ -91,17 +79,6 @@ class MyEditor extends React.Component {
     );
   }
 }
-
-
-const BlockStyleControls = (props) => {
-  const {editorState} = props;
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-  return (<div></div>);
-};
 
 export default MyEditor;
 
