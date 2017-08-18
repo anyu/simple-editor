@@ -1,10 +1,10 @@
 {
-  "name": "MERN-mysql-starter",
+  "name": "Simple-react-editor",
   "version": "1.0.0",
-  "description": "Project description",
+  "description": "A simple React editor built on top of Draft.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server",
+    "start": "node server/server",
     "build": "webpack --watch"
   },
   "keywords": [],
