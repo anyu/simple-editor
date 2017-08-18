@@ -1,4 +1,4 @@
-# Task List Editor
+# Simple React Editor
 A minimal implementation of Facebook's React text editor framework, Draft.js (http://draftjs.org). Draft.js leverages HTML's contentEditable attribute and can be customized extensively with React.
 
 ## Requirements
@@ -15,7 +15,10 @@ Demo: https://simple-react-editor.herokuapp.com
 * Delete // backspace
 
 # Development
-
+Installation requirements
+  * Node
+  * npm
+  
 Run the following commands from the root directory:
 
 ```javascript
@@ -23,7 +26,3 @@ npm install
 npm run build  
 npm start
 ```  
-
-## Installation requirements ##
-  * Node
-  * NPM
