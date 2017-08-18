@@ -1,12 +1,8 @@
 # Simple React Editor
 A minimal implementation of Facebook's React text editor framework, Draft.js (http://draftjs.org). Draft.js leverages HTML's contentEditable attribute and can be customized extensively with React.
 
-## Requirements
-* Node 
-* NPM
-
-## Usage
-Demo: https://simple-react-editor.herokuapp.com
+## Demo
+https://simple-react-editor.herokuapp.com
 
 * Cmd+L // format text into bullets
 * Tab / shift+tab // indent, outdent bullets (4 levels of hierarchy possible)
@@ -14,7 +10,7 @@ Demo: https://simple-react-editor.herokuapp.com
 * Cmd+Z // undo
 * Delete // backspace
 
-# Development
+## Development
 Installation requirements
   * Node
   * npm
