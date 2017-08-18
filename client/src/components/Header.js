@@ -9,10 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="header">
-        <h3>HumanDx</h3>
-        <nav>
-          <img className ='userpic' src='assets/images/avatar.jpg'/>
-        </nav>
+        <h3>Simple React Editor</h3>
       </div>
   )}
 }
